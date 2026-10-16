@@ -121,7 +121,7 @@ The project runs out-of-the-box in **Local Demo Mode** even without an API key! 
    ```
 2. Open `.env.local` and add your free Google AI Studio key:
    ```env
-   GEMINI_API_KEY=AIzaSy...your_actual_key_here
+   GEMINI_API_KEY=your_actual_key_here
    GEMINI_MODEL=gemini-2.5-flash
    ```
 
