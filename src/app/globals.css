@@ -1,26 +1,141 @@
 @import "tailwindcss";
 
+@theme {
+  --color-cotton: #FBF9F4;
+  --color-sage: #DCE9DF;
+  --color-sage-light: #EBF2EC;
+  --color-sage-dark: #3A5B4E;
+  --color-misty: #E3E8F8;
+  --color-misty-light: #F0F3FC;
+  --color-lavender: #EAE1F6;
+  --color-lavender-light: #F4EFFB;
+  --color-blush: #F9E7E5;
+  --color-blush-light: #FCF3F2;
+  --color-forest: #294B40;
+  --color-forest-hover: #1E372F;
+  --color-forest-deep: #162923;
+  --color-forest-light: #3E6759;
+  --color-muted: #65736B;
+  --color-muted-light: #8E9C95;
+  --color-muted-subtle: #A7B3AD;
+  --color-border-soft: rgba(41, 75, 64, 0.08);
+  --color-border-card: rgba(41, 75, 64, 0.12);
+
+  --font-serif: var(--font-serif), Georgia, Cambria, serif;
+  --font-sans: var(--font-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #FBF9F4;
+  --foreground: #294B40;
+  color-scheme: light;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Custom soft background blobs */
+.bg-mesh-soft {
+  background-color: #FBF9F4;
+  background-image: 
+    radial-gradient(at 15% 15%, rgba(220, 233, 223, 0.65) 0px, transparent 55%),
+    radial-gradient(at 85% 20%, rgba(227, 232, 248, 0.6) 0px, transparent 50%),
+    radial-gradient(at 50% 50%, rgba(234, 225, 246, 0.4) 0px, transparent 60%),
+    radial-gradient(at 80% 85%, rgba(249, 231, 229, 0.55) 0px, transparent 55%),
+    radial-gradient(at 20% 80%, rgba(220, 233, 223, 0.5) 0px, transparent 50%);
+}
+
+.bg-glass {
+  background: rgba(251, 249, 244, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.bg-glass-card {
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* Accessible focus styling */
+*:focus-visible {
+  outline: 2px solid #294B40;
+  outline-offset: 3px;
+}
+
+/* Subtle gentle floating animation */
+@keyframes gentle-float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-7px);
+  }
+}
+
+@keyframes gentle-pulse {
+  0%, 100% {
+    opacity: 0.85;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.03);
+  }
+}
+
+.animate-float-slow {
+  animation: gentle-float 6s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: gentle-float 7s ease-in-out 2s infinite;
+}
+
+.animate-pulse-subtle {
+  animation: gentle-pulse 4s ease-in-out infinite;
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .animate-float-slow,
+  .animate-float-delayed,
+  .animate-pulse-subtle {
+    animation: none !important;
+  }
+  * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #FBF9F4;
+}
+::-webkit-scrollbar-thumb {
+  background: #DCE9DF;
+  border-radius: 9999px;
+  border: 2px solid #FBF9F4;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #A7B3AD;
 }
